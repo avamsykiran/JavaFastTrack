@@ -552,3 +552,9 @@ Spring Framework
                 all CRUD operations on an entity "Consumer"
 
 
+    Json Annotaitons
+
+        @JsonIgnore     block both serialization and deserialization
+        @JsonProperty(access = Access.READ_ONLY)    only deserialization is allwoed
+        @JsonProperty(access = Access.WRITE_ONLY)   only serialization is allowed
+

@@ -11,6 +11,7 @@ import com.cts.sbrd.exceptions.EmployeeNotFoundException;
 public interface EmployeeService {
 	List<Employee> getAll();
 	Optional<Employee> getById(Long id);
+	Optional<Employee> getByMailId(String mailId);
 	List<Employee> getAllByName(String name);
 	List<Employee> getAllJoinedBetween(LocalDate start,LocalDate end);
 	Employee add(Employee emp) throws DuplicateEmployeeRecordExcepton;

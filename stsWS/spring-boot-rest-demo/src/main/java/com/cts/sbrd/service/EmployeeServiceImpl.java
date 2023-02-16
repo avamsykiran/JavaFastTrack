@@ -64,4 +64,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return empRepo.findById(id);
 	}
 
+	@Override
+	public Optional<Employee> getByMailId(String mailId) {
+		return empRepo.findByMailId(mailId);
+	}
+
 }

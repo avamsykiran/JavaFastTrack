@@ -32,9 +32,25 @@ public class EmployeeApi {
 		return ResponseEntity.ok(empService.getAll());
 	}
 	
-	@GetMapping("/{empId}")
+	@GetMapping("/{fnm:[A-Za-z\\s]+}")
+	public ResponseEntity<List<Employee>> getAllEmployeeNameAction(@PathVariable("fnm") String fullName){
+		return ResponseEntity.ok(empService.getAllByName(fullName));
+	}
+	
+	@GetMapping("/{empId:[1-9][0-9]{0,3}}")
 	public ResponseEntity<Employee> getByEmployeeIdAction(@PathVariable("empId") Long empId) throws EmployeeNotFoundException{
 		Optional<Employee> emp = empService.getById(empId);
+	
+		if(!emp.isPresent()) {
+			throw new EmployeeNotFoundException();
+		}
+		
+		return ResponseEntity.ok(emp.get());
+	}
+	
+	@GetMapping("/{mailId:.+@.+}")
+	public ResponseEntity<Employee> getByEmployeeMailIdAction(@PathVariable("mailId") String mailId) throws EmployeeNotFoundException{
+		Optional<Employee> emp = empService.getByMailId(mailId);
 	
 		if(!emp.isPresent()) {
 			throw new EmployeeNotFoundException();
